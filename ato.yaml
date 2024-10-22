@@ -7,3 +7,19 @@ dependencies:
   version_spec: '@09ad6baeaab93d53b9b6c90069ac750f4161d76f'
   link_broken: true
   path: elec/src/generics
+- name: rp2040
+  version_spec: '@a8c4e5cf7b1a72942f23138e11141b73be84eceb'
+  link_broken: true
+  path: elec/src/rp2040
+- name: sk6805-ec20
+  version_spec:
+  link_broken: true
+  path: elec/src/sk6805-ec20
+- name: qwiic-connectors
+  version_spec:
+  link_broken: true
+  path: elec/src/qwiic-connectors
+- name: programming-headers
+  version_spec: '@e3a6ca6b5b93e3c2db899aa7cc5a8fde17920abc'
+  link_broken: true
+  path: elec/src/programming-headers
