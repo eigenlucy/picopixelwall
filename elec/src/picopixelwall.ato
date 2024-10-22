@@ -1,0 +1,2 @@
+module Picopixelwall:
+    signal gnd
