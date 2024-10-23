@@ -1,0 +1,128 @@
+poses:
+  schematic:
+    0353b899:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -300.0
+        y: -210.0
+      rotation: 0
+    069bbc6e:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 285.0
+        y: 60.0
+      rotation: 0
+    1e126832:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -300.0
+        y: -15.0
+      rotation: 0
+    1e2f85a8:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 30.0
+        y: 120.0
+      rotation: 0
+    1e349dac:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -60.0
+        y: 195.0
+      rotation: 0
+    20fdea8f:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 15.0
+        y: 90.0
+      rotation: 0
+    2adf1fe6:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 165.0
+        y: 120.0
+      rotation: 0
+    3e9c7b3d:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -210.0
+        y: -420.0
+      rotation: 0
+    5b8eba6e:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 90.0
+        y: -210.0
+      rotation: 0
+    709fe7c3:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 180.0
+        y: -135.0
+      rotation: 0
+    70daca3e:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -360.0
+        y: -195.0
+      rotation: 0
+    790db28a:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 15.0
+        y: 90.0
+      rotation: 0
+    7b445442:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 75.0
+        y: 180.0
+      rotation: 0
+    98fb21c2:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -45.0
+        y: 105.0
+      rotation: 0
+    9a33a6d9:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 165.0
+        y: -60.0
+      rotation: 0
+    a437c44a:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -240.0
+        y: 105.0
+      rotation: 0
+    bc982712:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: 90.0
+        y: 360.0
+      rotation: 0
+    c00de312:
+      mirror_x: false
+      mirror_y: false
+      position:
+        x: -30.0
+        y: -120.0
+      rotation: 0

@@ -1,75 +1,62 @@
 from "rp2040/RP2040Kit.ato" import RP2040Kit
 from "sk6805-ec20/elec/src/sk6805-ec20.ato" import SK6805EC20
 from "generics/interfaces.ato" import Power, I2C, Pair, USB2, UART, QSPI, SPI
+from "usb-connectors/usb-connectors.ato" import USBCConn
+from "qwiic-connectors/elec/src/qwiic-connectors.ato" import QwiicConnector
+from "ams1117-33/elec/src/ams1117-33.ato" import AMS111733
+from "lmv321idbvr/elec/src/lmv321idbvr.ato" import LMV321IDBVR
+from "generics/resistors.ato" import Resistor
 
-module PicoPixelWall
-  # Declare Power Rails:
-  power5v = new Power
-  power3v3 = new Power
+module Picopixelwall:
+    # Declare Power Rails
+    power = new Power
+    power5v = new Power
+    power3v3 = new Power
+    power_usb = new Power
 
-  # Declare Power Connections:
+    # Declare Interfaces/Signals
+    i2c = new I2C
+    signal audio_out
+    signal mic_out
 
-  # Declare Interfaces:
+    # Declare Connectors
+    usbc_connector = new USBCConn
+    i2c_connector = new QwiicConnector
 
-  # Declare Connectors:
+    # Components
+    ldo = new AMS111733
+    micro = new RP2040Kit
+    led1 = new SK6805EC20
+    led2 = new SK6805EC20
+    opamp = new LMV321IDBVR
+    r_top = new Resistor
+    r_bottom = new Resistor
 
-  # Components
-  micro = new Pico
-  leds = new LEDS
-  mic = new Microphone
+    # Declare Power Connections
+    usbc_connector.power ~ power_usb
+    power_usb ~ power5v
+    power5v ~ led1.power
+    power5v ~ led2.power
+    power3v3 ~ i2c_connector.power
+    power5v ~ ldo.power_in
+    ldo.power_in.gnd ~ power.gnd
+    ldo.power_out.gnd ~ power.gnd
+    ldo.power_out ~ power3v3
+    power3v3 ~ micro.power
+    power_usb.gnd ~ power.gnd
+    power3v3.gnd ~ power.gnd
+    power5v.gnd ~ power.gnd
+    power3v3 ~ opamp.power
 
-  # Connect Interfaces
-  micro.led ~ leds.led
-
-module Pico
-  # Declare Power Rails
-  power_usb = new Power
-  power5v = new Power
-  power3v3 = new Power
- 
-  # Declare power connections:
-  power_usb ~ usbc_connector.power
-  power_usb.gnd ~ power3v3.gnd
-  power3v3 ~ i2c_connector.power
-
-  # Declare Interfaces
-  i2c = new I2C
-  led = new Pair
-  usb2 = new USB2
-  mic = new Pair
-  uart = new UART
-
-  # Declare Connectors
-  usbc_connector = new USBCConn
-  i2c_connector = new QwiicConnector
-
-  # Components
-  micro = new RP2040Kit
-
-  # Connect Interfaces
-  i2c ~ micro.i2c
-  usb2 ~ micro.usb2
-  uart ~ micro.uart
-  led ~ micro.gpio2
-
-module LEDS
-  # Declare Power Rails
-  power5v = new Power
-
-  # Declare Power Connections
-  power5v ~ led1.power
-  power5v ~ led2.power
-  # Declare Interfaces:
-  led = new Pair
-
-  # Components
-  led1 = new SK6805EC20
-  led2 = new SK6805EC20
-
-  # Connect Interfaces
-  led ~ led1.din
-  led1.dout ~ led2.din
-
-module Microphone
-  # Declare Power Rails
-  power3v3 = new Power
+    # Connect Interfaces/Signals
+    audio_out ~  micro.gpio27_a1
+    i2c_connector.i2c ~ i2c
+    micro.i2c ~ i2c
+    usbc_connector.usb2 ~ micro.usb2
+    micro.gpio2 ~ led1.din.io
+    led1.dout.io ~ led2.din.io
+    opamp.output ~ audio_out
+    audio_out ~ r_top.p1
+    opamp.inverting ~ r_bottom.p1
+    r_top.p2 ~ r_bottom.p1
+    r_bottom.p2 ~ power.gnd

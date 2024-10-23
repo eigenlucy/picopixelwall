@@ -19,7 +19,6 @@ component _SK6805EC20:
 
     din = new Pair
     din.io ~ DIN
-module Micro
     din.gnd ~ GND
 
     dout = new Pair
