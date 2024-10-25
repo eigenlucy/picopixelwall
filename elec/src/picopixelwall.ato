@@ -17,7 +17,6 @@ module Picopixelwall:
     # Declare Interfaces/Signals
     i2c = new I2C
     signal audio_out
-    signal mic_out
 
     # Declare Connectors
     usbc_connector = new USBCConn
