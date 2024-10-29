@@ -8,6 +8,7 @@ from "ams1117-33/elec/src/ams1117-33.ato" import AMS111733
 from "lmv321idbvr/elec/src/lmv321idbvr.ato" import LMV321IDBVR
 from "generics/resistors.ato" import Resistor
 from "generics/capacitors.ato" import Capacitor
+from "ledrow-x10.ato" import LedrowX10
 
 module Picopixelwall:
     # Declare Power Rails
@@ -30,16 +31,8 @@ module Picopixelwall:
     # Components
     ldo = new AMS111733
     micro = new RP2040Kit
-    led1 = new SK6805EC20
-    led2 = new SK6805EC20
-    led3 = new SK6805EC20
-    led4 = new SK6805EC20
-    led5 = new SK6805EC20
-    led6 = new SK6805EC20
-    led7 = new SK6805EC20
-    led8 = new SK6805EC20
-    led9 = new SK6805EC20
-    led10 = new SK6805EC20
+    ledrow1 = new LedrowX10
+    ledrow2 = new LedrowX10
     opamp = new LMV321IDBVR
     
     r_top = new Resistor
@@ -57,16 +50,8 @@ module Picopixelwall:
     # Declare Power Connections
     usbc_connector.power ~ power_usb
     power_usb ~ power5v
-    power5v ~ led1.power
-    power5v ~ led2.power
-    power5v ~ led3.power
-    power5v ~ led4.power
-    power5v ~ led5.power
-    power5v ~ led6.power
-    power5v ~ led7.power
-    power5v ~ led8.power
-    power5v ~ led9.power
-    power5v ~ led10.power
+    power5v ~ ledrow1.power
+    power5v ~ ledrow2.power
     power3v3 ~ i2c_connector.power
     power5v ~ ldo.power_in
     ldo.power_in.gnd ~ power.gnd
@@ -83,16 +68,8 @@ module Picopixelwall:
     i2c_connector.i2c ~ i2c
     micro.i2c ~ i2c
     usbc_connector.usb2 ~ micro.usb2
-    micro.gpio2 ~ led1.din.io
-    led1.dout.io ~ led2.din.io
-    led2.dout.io ~ led3.din.io
-    led3.dout.io ~ led4.din.io
-    led4.dout.io ~ led5.din.io
-    led5.dout.io ~ led6.din.io
-    led6.dout.io ~ led7.din.io
-    led7.dout.io ~ led8.din.io
-    led8.dout.io ~ led9.din.io
-    led9.dout.io ~ led10.din.io
+    micro.gpio2 ~ ledrow1.DIN
+    ledrow1.DOUT ~ ledrow2.DIN
     opamp.output ~ audio_out
     audio_out ~ r_top.p1
     mic_connector.p1 ~ c_mic.p1
@@ -101,6 +78,7 @@ module Picopixelwall:
     opamp.inverting ~ r_bottom.p1
     r_top.p2 ~ r_bottom.p1
     r_bottom.p2 ~ power.gnd
+    mic_connector.p2 ~ power.gnd
 
 
 component XH_2A from Connector2Pin:
